@@ -29,7 +29,7 @@ export function Logo({ className, size = "md", showText = true }: LogoProps): JS
   return (
     <div className={cn("flex items-center space-x-2", className)}>
       <div className="relative">
-        <div className="absolute inset-0 bg-blue-850 rounded-md blur-sm opacity-30 animate-pulse"></div>
+        <div className="absolute inset-0 bg-primary-600 rounded-md blur-sm opacity-30 animate-pulse"></div>
         <motion.div
           className={cn(sizes[size], "relative z-10")}
           whileHover={{ rotate: 360 }}
@@ -39,7 +39,7 @@ export function Logo({ className, size = "md", showText = true }: LogoProps): JS
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={cn(sizes[size], "text-blue-850")}
+            className={cn(sizes[size], "text-primary-600")}
           >
             <path
               d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z"
@@ -59,7 +59,9 @@ export function Logo({ className, size = "md", showText = true }: LogoProps): JS
           </svg>
         </motion.div>
       </div>
-      {showText && <span className={cn("font-bold text-blue-850 dark:text-white", textSizes[size])}>JobConnect</span>}
+      {showText && (
+        <span className={cn("font-bold text-primary-600 dark:text-white", textSizes[size])}>JobConnect</span>
+      )}
     </div>
   )
 }

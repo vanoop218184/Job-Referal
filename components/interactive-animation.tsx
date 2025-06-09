@@ -78,18 +78,18 @@ export function InteractiveAnimation(): JSX.Element {
   }
 
   const icons: IconItem[] = [
-    { Icon: Briefcase, color: "text-blue-600", initialX: "20%", initialY: "30%" },
-    { Icon: Building, color: "text-blue-850", initialX: "70%", initialY: "20%" },
-    { Icon: Users, color: "text-blue-700", initialX: "80%", initialY: "60%" },
-    { Icon: Award, color: "text-blue-500", initialX: "40%", initialY: "70%" },
-    { Icon: Zap, color: "text-blue-600", initialX: "10%", initialY: "60%" },
-    { Icon: Target, color: "text-blue-850", initialX: "50%", initialY: "40%" },
+    { Icon: Briefcase, color: "text-teal-600", initialX: "20%", initialY: "30%" },
+    { Icon: Building, color: "text-coral-500", initialX: "70%", initialY: "20%" },
+    { Icon: Users, color: "text-mint-500", initialX: "80%", initialY: "60%" },
+    { Icon: Award, color: "text-teal-500", initialX: "40%", initialY: "70%" },
+    { Icon: Zap, color: "text-coral-600", initialX: "10%", initialY: "60%" },
+    { Icon: Target, color: "text-mint-600", initialX: "50%", initialY: "40%" },
   ]
 
   return (
     <div
       ref={containerRef}
-      className="relative h-[400px] w-full rounded-xl bg-gradient-to-br from-blue-50 to-white border border-blue-100 overflow-hidden cursor-pointer optimize-animation"
+      className="relative h-[400px] w-full rounded-xl bg-gradient-to-br from-teal-50 to-white border border-teal-100 overflow-hidden cursor-pointer optimize-animation"
     >
       <div className="absolute inset-0 animated-gradient opacity-50"></div>
 
@@ -137,8 +137,8 @@ export function InteractiveAnimation(): JSX.Element {
         transition={{ delay: 0.5, duration: 0.5 }}
       >
         <div className="text-center px-6 py-4 rounded-lg bg-white/80 backdrop-blur-sm shadow-lg">
-          <h3 className="text-xl font-bold text-blue-850">Interactive Job Network</h3>
-          <p className="text-blue-700">Drag the icons or hover to interact</p>
+          <h3 className="text-xl font-bold text-teal-800">Interactive Job Network</h3>
+          <p className="text-teal-700">Drag the icons or hover to interact</p>
         </div>
       </motion.div>
     </div>

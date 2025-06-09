@@ -12,7 +12,7 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     id: "premium",
     name: "Premium Plan",
     description: "For serious job seekers",
-    price: 29,
+    price: 2499, // ₹2,499 per month
     features: [
       "Unlimited referral requests",
       "Advanced search filters",
@@ -29,7 +29,7 @@ export async function createCheckoutSession(
   userId: string,
   paymentDetails?: PaymentDetails,
 ): Promise<CheckoutSession> {
-  // In a real app, this would call your API to create a Stripe checkout session
+  // In a real app, this would call your API to create a payment gateway session (Razorpay, etc.)
   console.log(`Creating checkout session for plan ${planId} and user ${userId}`, paymentDetails)
 
   // Simulate API call

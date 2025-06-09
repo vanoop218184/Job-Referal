@@ -89,9 +89,9 @@ export function CheckoutForm({ plan, onSuccess, onCancel }: CheckoutFormProps): 
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="w-full max-w-md mx-auto border-blue-200">
+      <Card className="w-full max-w-md mx-auto border-teal-200">
         <CardHeader>
-          <CardTitle className="text-blue-850">Subscribe to {plan.name}</CardTitle>
+          <CardTitle className="text-teal-800">Subscribe to {plan.name}</CardTitle>
           <CardDescription>
             {plan.price === 0 ? "Free forever" : `$${plan.price}/month - ${plan.description}`}
           </CardDescription>
@@ -116,7 +116,7 @@ export function CheckoutForm({ plan, onSuccess, onCancel }: CheckoutFormProps): 
                 value={cardDetails.name}
                 onChange={handleInputChange("name")}
                 required
-                className="border-blue-200 focus-visible:ring-blue-500"
+                className="border-teal-200 focus-visible:ring-teal-500"
               />
             </div>
 
@@ -129,9 +129,9 @@ export function CheckoutForm({ plan, onSuccess, onCancel }: CheckoutFormProps): 
                   value={cardDetails.number}
                   onChange={handleInputChange("number")}
                   required
-                  className="pl-10 border-blue-200 focus-visible:ring-blue-500"
+                  className="pl-10 border-teal-200 focus-visible:ring-teal-500"
                 />
-                <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-blue-500" />
+                <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-teal-500" />
               </div>
             </div>
 
@@ -144,7 +144,7 @@ export function CheckoutForm({ plan, onSuccess, onCancel }: CheckoutFormProps): 
                   value={cardDetails.expiry}
                   onChange={handleInputChange("expiry")}
                   required
-                  className="border-blue-200 focus-visible:ring-blue-500"
+                  className="border-teal-200 focus-visible:ring-teal-500"
                 />
               </div>
               <div className="space-y-2">
@@ -155,12 +155,12 @@ export function CheckoutForm({ plan, onSuccess, onCancel }: CheckoutFormProps): 
                   value={cardDetails.cvc}
                   onChange={handleInputChange("cvc")}
                   required
-                  className="border-blue-200 focus-visible:ring-blue-500"
+                  className="border-teal-200 focus-visible:ring-teal-500"
                 />
               </div>
             </div>
 
-            <div className="flex items-center space-x-2 text-sm text-blue-700">
+            <div className="flex items-center space-x-2 text-sm text-teal-700">
               <Shield className="h-4 w-4" />
               <span>Your payment information is secure</span>
             </div>
@@ -172,7 +172,7 @@ export function CheckoutForm({ plan, onSuccess, onCancel }: CheckoutFormProps): 
             variant="outline"
             onClick={onCancel}
             disabled={isLoading}
-            className="border-blue-200 text-blue-700"
+            className="border-teal-200 text-teal-700"
           >
             Cancel
           </Button>
@@ -180,7 +180,7 @@ export function CheckoutForm({ plan, onSuccess, onCancel }: CheckoutFormProps): 
             type="submit"
             onClick={(e) => handleSubmit(e as any)}
             disabled={isLoading}
-            className="bg-blue-850 hover:bg-blue-900"
+            className="bg-teal-600 hover:bg-teal-700"
           >
             {isLoading ? "Processing..." : `Pay $${plan.price}`}
           </Button>

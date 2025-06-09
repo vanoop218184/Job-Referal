@@ -10,9 +10,12 @@ import { useEffect, useState } from "react"
 import { Logo } from "@/components/logo"
 import { InteractiveAnimation } from "@/components/interactive-animation"
 import { FloatingJobCards } from "@/components/floating-job-cards"
+import { CompanyLogo } from "@/components/company-logos"
 import { motion } from "framer-motion"
-import { HeroImage } from "@/components/hero-image"
 import { PricingSection } from "@/components/pricing-section"
+import { Background3D } from "@/components/background-3d"
+import { ThemeToggle } from "@/components/theme-toggle"
+import JobHeroImage from "@/components/job-hero-image"
 
 export default function HomePage() {
   const { user } = useAuth()
@@ -42,23 +45,34 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-professional-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+      <Background3D />
       {/* Header */}
       <header
-        className={`border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50 transition-all duration-300 ${
+        className={`border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50 transition-all duration-300 ${
           scrollY > 50 ? "shadow-md" : ""
         }`}
       >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Logo size="md" />
-          <div className="space-x-4">
+          <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <Link href="/login">
-              <Button variant="ghost" className="text-blue-700 hover:text-blue-850 hover:bg-blue-50">
-                Login
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  variant="ghost"
+                  className="text-professional-700 dark:text-professional-200 hover:text-professional-800 dark:hover:text-professional-100 hover:bg-professional-50 dark:hover:bg-professional-800/20 transition-all duration-300"
+                >
+                  Login
+                </Button>
+              </motion.div>
             </Link>
             <Link href="/register">
-              <Button className="bg-blue-850 hover:bg-blue-900">Get Started</Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 shadow-md hover:shadow-lg transition-all duration-300">
+                  Get Started
+                </Button>
+              </motion.div>
             </Link>
           </div>
         </div>
@@ -74,18 +88,21 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-5xl font-bold text-blue-850 mb-6">
+              <h1 className="text-5xl font-bold mb-6 text-professional-800 dark:text-professional-100">
                 Find Your Dream Job Through
-                <span className="text-blue-600"> Professional Referrals</span>
+                <span className="gradient-text"> Professional Referrals</span>
               </h1>
-              <p className="text-xl text-blue-700 mb-8">
-                Connect with industry professionals and get referred to top companies. Access exclusive job
+              <p className="text-xl text-professional-700 dark:text-professional-200 mb-8">
+                Connect with industry professionals across India and get referred to top companies. Access exclusive job
                 opportunities that aren't posted anywhere else.
               </p>
               <div className="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link href="/register">
-                    <Button size="lg" className="text-lg px-8 bg-blue-850 hover:bg-blue-900 w-full sm:w-auto">
+                    <Button
+                      size="lg"
+                      className="text-lg px-8 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 w-full sm:w-auto shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
                       Start Job Search <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
@@ -95,7 +112,7 @@ export default function HomePage() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="text-lg px-8 border-blue-200 text-blue-700 hover:bg-blue-50 w-full sm:w-auto"
+                      className="text-lg px-8 border-success-300 dark:border-success-600 text-success-600 dark:text-success-400 hover:bg-success-50 dark:hover:bg-success-900/20 w-full sm:w-auto transition-all duration-300"
                     >
                       I'm a Referrer
                     </Button>
@@ -107,44 +124,45 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="optimize-animation"
+              className="optimize-animation h-[400px]"
             >
-              <HeroImage />
+              <JobHeroImage />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Trusted By Section */}
-      <section className="py-10 bg-white">
+      {/* Trusted By Section with Company Logos */}
+      <section className="py-10 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
-          <h2 className="text-center text-lg font-medium text-blue-700 mb-8">Trusted by professionals from</h2>
+          <h2 className="text-center text-lg font-medium text-professional-700 dark:text-professional-200 mb-8">
+            Trusted by professionals from
+          </h2>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {[{ name: "Google" }, { name: "Microsoft" }, { name: "Amazon" }, { name: "Apple" }, { name: "Meta" }].map(
-              (company, index) => (
-                <motion.div
-                  key={company.name}
-                  className="text-blue-400 font-bold text-xl"
-                  whileHover={{ scale: 1.1, color: "#0a1d8a" }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                >
-                  {company.name}
-                </motion.div>
-              ),
-            )}
+            {["Google", "Microsoft", "Amazon", "Apple", "Meta"].map((company, index) => (
+              <motion.div
+                key={company}
+                className="flex flex-col items-center space-y-2"
+                whileHover={{ scale: 1.1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
+                <CompanyLogo name={company} className="w-12 h-12" />
+                <span className="text-sm font-medium text-professional-600 dark:text-professional-300">{company}</span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Interactive Animation Section */}
-      <section className="py-16 bg-gradient-to-b from-white to-blue-50">
+      <section className="py-16 bg-gradient-to-b from-white to-professional-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <motion.h2
-              className="text-3xl font-bold text-blue-850"
+              className="text-3xl font-bold text-professional-800 dark:text-professional-100"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -153,13 +171,14 @@ export default function HomePage() {
               How JobConnect Works
             </motion.h2>
             <motion.p
-              className="text-blue-700 mt-2 max-w-2xl mx-auto"
+              className="text-professional-700 dark:text-professional-200 mt-2 max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               Our platform connects job seekers with professionals who can refer them to opportunities at top companies
+              across India
             </motion.p>
           </div>
           <InteractiveAnimation />
@@ -167,11 +186,11 @@ export default function HomePage() {
       </section>
 
       {/* Interactive Job Cards Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <motion.h2
-              className="text-3xl font-bold text-blue-850"
+              className="text-3xl font-bold text-professional-800 dark:text-professional-100"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -180,13 +199,13 @@ export default function HomePage() {
               Discover Opportunities
             </motion.h2>
             <motion.p
-              className="text-blue-700 mt-2 max-w-2xl mx-auto"
+              className="text-professional-700 dark:text-professional-200 mt-2 max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Drag the job cards to explore. Each one represents a real opportunity.
+              Explore real opportunities across India with personal invitations from industry professionals.
             </motion.p>
           </div>
           <FloatingJobCards />
@@ -194,10 +213,10 @@ export default function HomePage() {
       </section>
 
       {/* Features */}
-      <section className="py-16 bg-blue-50">
+      <section className="py-16 bg-professional-50 dark:bg-gray-800 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <motion.h2
-            className="text-3xl font-bold text-center mb-4 text-blue-850"
+            className="text-3xl font-bold text-center mb-4 text-professional-800 dark:text-professional-100"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -206,13 +225,13 @@ export default function HomePage() {
             Why Choose JobConnect?
           </motion.h2>
           <motion.p
-            className="text-center text-blue-700 mb-12 max-w-2xl mx-auto"
+            className="text-center text-professional-700 dark:text-professional-200 mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Our platform offers unique advantages that help you stand out in the job market
+            Our platform offers unique advantages that help you stand out in the Indian job market
           </motion.p>
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -220,22 +239,23 @@ export default function HomePage() {
                 icon: Users,
                 title: "Professional Network",
                 description:
-                  "Connect with professionals from top companies who can refer you to exclusive opportunities.",
-                color: "text-blue-600",
+                  "Connect with professionals from top companies across India who can refer you to exclusive opportunities.",
+                color: "text-primary-600 dark:text-primary-400",
                 delay: 0,
               },
               {
                 icon: Briefcase,
                 title: "Quality Referrals",
-                description: "Access high-quality job referrals from verified professionals across various industries.",
-                color: "text-blue-850",
+                description:
+                  "Access high-quality job referrals from verified professionals across various industries in India.",
+                color: "text-success-500 dark:text-success-400",
                 delay: 0.1,
               },
               {
                 icon: Star,
                 title: "Premium Features",
                 description: "Upgrade to premium for advanced filters, unlimited connections, and priority support.",
-                color: "text-blue-700",
+                color: "text-accent-500 dark:text-accent-400",
                 delay: 0.2,
               },
             ].map((feature, index) => (
@@ -247,13 +267,13 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: feature.delay }}
               >
-                <Card className="h-full border-blue-100 hover:border-blue-300 transition-colors">
+                <Card className="h-full border-professional-200 dark:border-professional-700 hover:border-primary-300 dark:hover:border-primary-600 transition-colors bg-white dark:bg-gray-900">
                   <CardHeader>
                     <feature.icon className={`h-12 w-12 ${feature.color} mb-4`} />
-                    <CardTitle className="text-blue-850">{feature.title}</CardTitle>
+                    <CardTitle className="text-professional-800 dark:text-professional-100">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-blue-700">{feature.description}</p>
+                    <p className="text-professional-700 dark:text-professional-200">{feature.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -266,10 +286,10 @@ export default function HomePage() {
       <PricingSection />
 
       {/* Testimonials */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <motion.h2
-            className="text-3xl font-bold text-center mb-4 text-blue-850"
+            className="text-3xl font-bold text-center mb-4 text-professional-800 dark:text-professional-100"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -278,34 +298,34 @@ export default function HomePage() {
             Success Stories
           </motion.h2>
           <motion.p
-            className="text-center text-blue-700 mb-12 max-w-2xl mx-auto"
+            className="text-center text-professional-700 dark:text-professional-200 mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Hear from job seekers who found their dream jobs through JobConnect
+            Hear from job seekers who found their dream jobs through JobConnect across India
           </motion.p>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: "Sarah Johnson",
-                role: "Software Engineer at Google",
+                name: "Priya Sharma",
+                role: "Software Engineer at Google India",
                 quote:
-                  "JobConnect helped me land my dream job at Google. The referral I received made all the difference in getting my foot in the door.",
+                  "JobConnect helped me land my dream job at Google's Bangalore office. The referral I received made all the difference in getting my foot in the door.",
               },
               {
-                name: "Michael Chen",
-                role: "Product Manager at Amazon",
+                name: "Arjun Patel",
+                role: "Product Manager at Amazon India",
                 quote:
-                  "After months of applying to jobs with no response, I got a referral through JobConnect and received an offer within 2 weeks!",
+                  "After months of applying to jobs with no response, I got a referral through JobConnect and received an offer within 2 weeks from Amazon Mumbai!",
               },
               {
-                name: "Emily Rodriguez",
-                role: "UX Designer at Apple",
+                name: "Sneha Reddy",
+                role: "UX Designer at Microsoft India",
                 quote:
-                  "The premium features were worth every penny. The advanced filters helped me find exactly the right opportunity for my skills.",
+                  "The premium features were worth every penny. The advanced filters helped me find exactly the right opportunity in Hyderabad for my skills.",
               },
             ].map((testimonial, index) => (
               <motion.div
@@ -316,20 +336,24 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="h-full border-blue-100">
+                <Card className="h-full border-professional-200 dark:border-professional-700 bg-white dark:bg-gray-900">
                   <CardContent className="pt-6">
                     <div className="flex flex-col items-center text-center">
-                      <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4 bg-blue-100 flex items-center justify-center">
-                        <span className="text-blue-850 font-bold text-xl">
+                      <div className="relative w-16 h-16 rounded-full overflow-hidden mb-4 bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
+                        <span className="text-primary-800 dark:text-primary-200 font-bold text-xl">
                           {testimonial.name
                             .split(" ")
                             .map((n) => n[0])
                             .join("")}
                         </span>
                       </div>
-                      <p className="text-blue-700 italic mb-4">"{testimonial.quote}"</p>
-                      <h3 className="font-semibold text-blue-850">{testimonial.name}</h3>
-                      <p className="text-sm text-blue-600">{testimonial.role}</p>
+                      <p className="text-professional-700 dark:text-professional-200 italic mb-4">
+                        "{testimonial.quote}"
+                      </p>
+                      <h3 className="font-semibold text-professional-800 dark:text-professional-100">
+                        {testimonial.name}
+                      </h3>
+                      <p className="text-sm text-professional-600 dark:text-professional-300">{testimonial.role}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -340,7 +364,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-800 to-blue-900 text-white">
+      <section className="py-16 bg-gradient-to-r from-primary-600 to-success-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
             className="text-3xl font-bold mb-4"
@@ -349,16 +373,16 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Ready to Accelerate Your Job Search?
+            Ready to Accelerate Your Job Search in India?
           </motion.h2>
           <motion.p
-            className="text-xl mb-8 max-w-2xl mx-auto text-blue-100"
+            className="text-xl mb-8 max-w-2xl mx-auto text-primary-100"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Join thousands of professionals who found their dream jobs through referrals
+            Join thousands of professionals who found their dream jobs through referrals across India
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -367,19 +391,24 @@ export default function HomePage() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Link href="/register">
-              <Button size="lg" className="text-lg px-8 bg-white text-blue-850 hover:bg-blue-50">
-                Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  size="lg"
+                  className="text-lg px-8 bg-white text-primary-700 hover:bg-primary-50 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </motion.div>
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <motion.h2
-            className="text-3xl font-bold text-center mb-4 text-blue-850"
+            className="text-3xl font-bold text-center mb-4 text-professional-800 dark:text-professional-100"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -388,7 +417,7 @@ export default function HomePage() {
             Frequently Asked Questions
           </motion.h2>
           <motion.p
-            className="text-center text-blue-700 mb-12 max-w-2xl mx-auto"
+            className="text-center text-professional-700 dark:text-professional-200 mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -400,19 +429,19 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto space-y-4">
             {[
               {
-                question: "How does JobConnect work?",
+                question: "How does JobConnect work in India?",
                 answer:
-                  "JobConnect connects job seekers with professionals who can refer them to opportunities at their companies. You create a profile, search for relevant jobs, and request referrals from our network of professionals.",
+                  "JobConnect connects job seekers with professionals across India who can refer them to opportunities at their companies. You create a profile, search for relevant jobs in cities like Bangalore, Mumbai, Delhi, and more, and request referrals from our network of professionals.",
               },
               {
                 question: "What's the difference between free and premium plans?",
                 answer:
-                  "Free users can request up to 5 referrals per month and access basic search functionality. Premium users get unlimited referral requests, advanced search filters, direct messaging with referrers, access to premium job listings, and personalized feedback.",
+                  "Free users can request up to 5 referrals per month and access basic search functionality. Premium users (₹2,499/month) get unlimited referral requests, advanced search filters, direct messaging with referrers, access to premium job listings, and personalized feedback.",
               },
               {
-                question: "How effective are referrals in the job search process?",
+                question: "How effective are referrals in the Indian job market?",
                 answer:
-                  "Referrals are extremely effective. Candidates who are referred are 15 times more likely to be hired than those who apply through job boards, and the hiring process is typically 55% faster for referred candidates.",
+                  "Referrals are extremely effective in India. Candidates who are referred are 15 times more likely to be hired than those who apply through job boards, and the hiring process is typically 55% faster for referred candidates.",
               },
               {
                 question: "Can I cancel my premium subscription anytime?",
@@ -422,19 +451,19 @@ export default function HomePage() {
             ].map((faq, index) => (
               <motion.div
                 key={index}
-                className="border border-blue-100 rounded-lg overflow-hidden"
+                className="border border-professional-200 dark:border-professional-700 rounded-lg overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <details className="group">
-                  <summary className="flex justify-between items-center p-4 cursor-pointer bg-blue-50 hover:bg-blue-100 transition-colors">
-                    <h3 className="font-medium text-blue-850">{faq.question}</h3>
-                    <ChevronDown className="h-5 w-5 text-blue-600 group-open:rotate-180 transition-transform" />
+                  <summary className="flex justify-between items-center p-4 cursor-pointer bg-professional-50 dark:bg-gray-800 hover:bg-professional-100 dark:hover:bg-gray-700 transition-colors">
+                    <h3 className="font-medium text-professional-800 dark:text-professional-100">{faq.question}</h3>
+                    <ChevronDown className="h-5 w-5 text-professional-600 dark:text-professional-300 group-open:rotate-180 transition-transform" />
                   </summary>
-                  <div className="p-4 bg-white">
-                    <p className="text-blue-700">{faq.answer}</p>
+                  <div className="p-4 bg-white dark:bg-gray-900">
+                    <p className="text-professional-700 dark:text-professional-200">{faq.answer}</p>
                   </div>
                 </details>
               </motion.div>
@@ -444,35 +473,47 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-blue-850 text-white py-12">
+      <footer className="bg-professional-800 dark:bg-gray-950 text-white py-12 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <Logo size="md" showText={true} className="text-white mb-4" />
-              <p className="text-blue-200 text-sm">
-                Connecting job seekers with professional referrals to accelerate their career growth.
+              <p className="text-professional-200 dark:text-professional-300 text-sm">
+                Connecting job seekers with professional referrals to accelerate their career growth across India.
               </p>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/" className="text-blue-200 hover:text-white transition-colors">
+                  <Link
+                    href="/"
+                    className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                  >
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="text-blue-200 hover:text-white transition-colors">
+                  <Link
+                    href="/about"
+                    className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                  >
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/pricing" className="text-blue-200 hover:text-white transition-colors">
+                  <Link
+                    href="/pricing"
+                    className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                  >
                     Pricing
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-blue-200 hover:text-white transition-colors">
+                  <Link
+                    href="/contact"
+                    className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                  >
                     Contact
                   </Link>
                 </li>
@@ -482,17 +523,26 @@ export default function HomePage() {
               <h3 className="font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/terms" className="text-blue-200 hover:text-white transition-colors">
+                  <Link
+                    href="/terms"
+                    className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                  >
                     Terms of Service
                   </Link>
                 </li>
                 <li>
-                  <Link href="/privacy" className="text-blue-200 hover:text-white transition-colors">
+                  <Link
+                    href="/privacy"
+                    className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                  >
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="/cookies" className="text-blue-200 hover:text-white transition-colors">
+                  <Link
+                    href="/cookies"
+                    className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                  >
                     Cookie Policy
                   </Link>
                 </li>
@@ -501,7 +551,10 @@ export default function HomePage() {
             <div>
               <h3 className="font-semibold mb-4">Connect With Us</h3>
               <div className="flex space-x-4">
-                <Link href="#" className="text-blue-200 hover:text-white transition-colors">
+                <Link
+                  href="#"
+                  className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                >
                   <span className="sr-only">Facebook</span>
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path
@@ -511,13 +564,19 @@ export default function HomePage() {
                     />
                   </svg>
                 </Link>
-                <Link href="#" className="text-blue-200 hover:text-white transition-colors">
+                <Link
+                  href="#"
+                  className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                >
                   <span className="sr-only">Twitter</span>
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                   </svg>
                 </Link>
-                <Link href="#" className="text-blue-200 hover:text-white transition-colors">
+                <Link
+                  href="#"
+                  className="text-professional-200 dark:text-professional-300 hover:text-white transition-colors"
+                >
                   <span className="sr-only">LinkedIn</span>
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path
@@ -530,8 +589,8 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-blue-700 text-center">
-            <p className="text-blue-200">© 2024 JobConnect. All rights reserved.</p>
+          <div className="mt-8 pt-8 border-t border-professional-700 dark:border-professional-600 text-center">
+            <p className="text-professional-200 dark:text-professional-300">© 2024 JobConnect. All rights reserved.</p>
           </div>
         </div>
       </footer>

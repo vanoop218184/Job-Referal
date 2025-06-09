@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    --background: 210 50% 98%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 220 20% 98%;
+    --foreground: 220 20% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 20% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --popover-foreground: 220 20% 10%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 220 20% 98%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 20% 10%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 13% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 20% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 9.8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 9.8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.5% 48%;
+    --background: 220 20% 4%;
+    --foreground: 220 20% 98%;
+    --card: 220 20% 8%;
+    --card-foreground: 220 20% 98%;
+    --popover: 220 20% 8%;
+    --popover-foreground: 220 20% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 220 20% 4%;
+    --secondary: 220 14% 12%;
+    --secondary-foreground: 220 20% 98%;
+    --muted: 220 14% 12%;
+    --muted-foreground: 220 13% 65%;
+    --accent: 220 14% 12%;
+    --accent-foreground: 220 20% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 220 20% 98%;
+    --border: 220 14% 12%;
+    --input: 220 14% 12%;
+    --ring: 217 91% 60%;
   }
 }
 
@@ -63,7 +63,7 @@
     -45deg,
     rgba(59, 130, 246, 0.1),
     rgba(37, 99, 235, 0.2),
-    rgba(30, 64, 175, 0.1),
+    rgba(16, 185, 129, 0.1),
     rgba(59, 130, 246, 0.1)
   );
   background-size: 400% 400%;
@@ -89,7 +89,7 @@
 
 .interactive-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(10, 29, 138, 0.1), 0 8px 10px -6px rgba(10, 29, 138, 0.1);
+  box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
 }
 
 /* Optimize animations with hardware acceleration */
@@ -111,14 +111,63 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5ff;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0a1d8a;
+  background: #3b82f6;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #132593;
+  background: #2563eb;
+}
+
+/* 3D scene container */
+.scene-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Professional glass effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Floating bubbles */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: bubble-float 6s ease-in-out infinite;
+}
+
+.bubble:nth-child(1) {
+  animation-delay: 0s;
+}
+.bubble:nth-child(2) {
+  animation-delay: 1s;
+}
+.bubble:nth-child(3) {
+  animation-delay: 2s;
+}
+.bubble:nth-child(4) {
+  animation-delay: 3s;
+}
+.bubble:nth-child(5) {
+  animation-delay: 4s;
 }
